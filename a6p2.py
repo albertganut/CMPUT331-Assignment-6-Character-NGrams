@@ -37,18 +37,82 @@ Problem 2
 from sys import flags
 
 def keyScore(mapping: dict, ciphertext: str, frequencies: dict, n: int) -> float:
-    raise NotImplementedError()
+
+    deciphered_chars = [] # this holds the chars replaced using the mapping
+
+    for char in ciphertext:
+
+        deciphered_chars.append(mapping[char]) # finds the replacement char and then adds it to the list of deciphered chars
+
+    deciphered_text = "".join(deciphered_chars)
+
+    score = 0 # this is the score of the deciphered text based on the frequencies of n grams
+    total_ngrams = len(deciphered_text) - n + 1
+
+    for i in range(total_ngrams):
+
+        ngram = deciphered_text[i:i + n]
+
+        # if the current ngram is in the frequencies dict, then we add its frequency to the score
+        if ngram in frequencies:
+            score += frequencies[ngram]
+
+    return float(score)
   
 
 def test():
     "Run tests"
-    # TODO: test thoroughly by writing your own regression tests
-    # This function is ignored in our marking
+
+    mapping = {}
+    alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ "
+
+    for char in alphabet:
+        mapping[char] = char
+
+    # test 1
+    frequencies = {
+        "EE": 0.5,
+        "EF": 0.2,
+        "FE": 0.3
+    }
+
+    # line 81 written by Google Gemini
+    score = keyScore(mapping, "EEFFFEEF", frequencies, 2)
+    assert abs(score - 1.7) < 0.000000001
+    print(f"Test 1 score: {score}")
+
+    # test 2 --> with spaces
+    frequencies = {
+        "A ": 0.4,
+        " B": 0.6
+    }
+
+    score = keyScore(mapping, "A B", frequencies, 2)
+    assert abs(score - 1.0) < 0.000000001
+    print(f"Test 2 score: {score}")
+
+    # test 3 --> no ngrams
+    frequencies = {"AB": 0.5}
+
+    score = keyScore(mapping, "A", frequencies, 2)
+    assert abs(score - 0.0) < 0.000000001
+    print(f"Test 3 score: {score}")
+
+    # lines 104-113 written by Google Gemini
+    # test 4 --> check that the mapping actually replaces characters.
+    # Swap A and E so that the mapping remains one-to-one.
+    mapping["A"] = "E"
+    mapping["E"] = "A"
+
+    frequencies = {
+        "EB": 0.7
+    }
+
+    score = keyScore(mapping, "AB", frequencies, 2)
+    assert abs(score - 0.7) < 0.000000001
+    print(f"Test 4 score: {score}")
+
+    print("Problem 2 tests passed")
 
 if __name__ == "__main__" and not flags.interactive:
     test()
-
-
-
-
-
