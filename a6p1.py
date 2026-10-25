@@ -79,8 +79,8 @@ def test():
     "Run tests"
 
     assert ngramsFreqs("ABABA", 2) == {"AB": 0.5, "BA": 0.5}
-    assert ngramsFreqs("abcde", 2) == {'ab': 0.25, 'bc': 0.25, 'cd': 0.25, 'de': 0.25}
-    assert ngramsFreqs("abcde", 3) == {'abc':  1 / 3, 'bcd': 1 / 3, 'cde': 1 / 3}
+    assert ngramsFreqs("abcde", 2) == {"ab": 0.25, "bc": 0.25, "cd": 0.25, "de": 0.25}
+    assert ngramsFreqs("abcde", 3) == {"abc":  1 / 3, "bcd": 1 / 3, "cde": 1 / 3}
 
     # lines 86-107 from Google Gemini
     assert ngramsFreqs("AAAA", 2) == {
