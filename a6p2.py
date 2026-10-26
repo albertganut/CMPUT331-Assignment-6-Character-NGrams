@@ -72,7 +72,7 @@ def test():
     # test 1
     frequencies = {"EE": 0.5, "EF": 0.2, "FE": 0.3}
 
-    # line 81 written by Google Gemini
+    # line 77 written by Google Gemini
     score = keyScore(mapping, "EEFFFEEF", frequencies, 2)
     assert abs(score - 1.7) < 0.000000001
     print(f"Test 1 score: {score}")
@@ -94,7 +94,7 @@ def test():
     assert abs(score - 0.0) < 0.000000001
     print(f"Test 3 score: {score}")
 
-    # lines 104-113 written by Google Gemini
+    # lines 97-109 written by Google Gemini
     # test 4 --> check that the mapping actually replaces characters.
     # Swap A and E so that the mapping remains one-to-one.
     mapping["A"] = "E"
