@@ -70,11 +70,7 @@ def test():
         mapping[char] = char
 
     # test 1
-    frequencies = {
-        "EE": 0.5,
-        "EF": 0.2,
-        "FE": 0.3
-    }
+    frequencies = {"EE": 0.5, "EF": 0.2, "FE": 0.3}
 
     # line 81 written by Google Gemini
     score = keyScore(mapping, "EEFFFEEF", frequencies, 2)
